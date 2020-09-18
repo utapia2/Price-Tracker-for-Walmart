@@ -3,12 +3,14 @@ from bs4 import BeautifulSoup
 import smtplib
 import time
 
+def BestbuyPriceTracker():
+    print('caling bestbuy tracker')
 
 def WalmartPriceTracker():
+    print('caling walmart tracker')
     while True:
 
         website = input('Enter Walmart item page you want to track: ')
-        print(website)
         response = requests.get(website)
 
         if response.status_code == 200:
@@ -44,11 +46,10 @@ def WalmartPriceTracker():
             print('Item is not on sale')
             freq = int(input('How often would you like to check for this price? ex: Type 2 for every 2 hours: '))
             print('Okay program will check every', freq,' hours')
-            #temporary, remove when using it
+            #temporary exit(), remove when actually price tracking
             exit()
             time.sleep(freq*60*60)
             print('Checking again!')
-
 
 
 def main():
