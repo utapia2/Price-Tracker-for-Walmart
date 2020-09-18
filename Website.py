@@ -13,7 +13,7 @@ def WalmartPriceTracker():
 
         if response.status_code == 200:
             print('Success! Website is accessible')
-            time.sleep(5)
+            time.sleep(3)
 
         soup = BeautifulSoup(response.content, "lxml")
 
@@ -43,7 +43,9 @@ def WalmartPriceTracker():
         else:
             print('Item is not on sale')
             freq = int(input('How often would you like to check for this price? ex: Type 2 for every 2 hours: '))
-            print('Okay program will check every ', freq, ' hours') 
+            print('Okay program will check every', freq,' hours')
+            #temporary, remove when using it
+            exit()
             time.sleep(freq*60*60)
             print('Checking again!')
 
@@ -57,23 +59,9 @@ def main():
 
     if selection == 1:
         WalmartPriceTracker()
-        
+
     else:
         exit()
 
 if __name__ == '__main__':
     main()
-
-'''
-I'll get back to this later
-print('What website would you like to access?')
-print("Enter 1 for Walmart \n Enter 2 for BestBuy \n Enter 3 for Target")
-
-
-selection = input()
-
-if selection == 1:
-    WalmartPriceTracker()
-elif selection == 2:
-
-'''
