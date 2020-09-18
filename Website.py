@@ -1,0 +1,76 @@
+import requests
+from bs4 import BeautifulSoup
+import smtplib
+import time
+
+
+def WalmartPriceTracker():
+    while True:
+
+        website = input('Enter Walmart item page you want to track: ')
+        print(website)
+        response = requests.get(website)
+
+        if response.status_code == 200:
+            print('Success! Website is accessible')
+            time.sleep(5)
+
+        soup = BeautifulSoup(response.content, "lxml")
+
+        price = soup.find('span', {'class': "price-characteristic"})
+
+        eprice = float(price["content"])
+
+        print ('Price is ' ,  eprice);
+        wishprice = float(input('Enter the price you wish to notify you when the item is that price or lower: '))
+
+        if eprice <= wishprice:
+
+            print('Your item is on sale! sending email...')
+            sent_from = 'codemail5678@gmail.com'
+            password = 'qwzx5678'
+            to = 'utapia24@gmail.com'
+            body = 'Your item is now $' + str(eprice) + ' dollars! \n ' \
+                                                       'Go to the page: ' + website
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.ehlo()
+            server.starttls()
+            server.login(sent_from, password)
+            server.sendmail(sent_from, to, body)
+            server.close()
+            break
+
+        else:
+            print('Item is not on sale')
+            time.sleep(21600)
+            print('Checking again!')
+
+
+
+def main():
+
+    print("in main funcion")
+
+    selection = int(input("Enter 1 for Walmart \nEnter 2 for BestBuy \nEnter 3 for Target\n: "))
+
+    if selection == 1:
+        WalmartPriceTracker()
+    else:
+        exit()
+
+if __name__ == '__main__':
+    main()
+
+'''
+I'll get back to this later
+print('What website would you like to access?')
+print("Enter 1 for Walmart \n Enter 2 for BestBuy \n Enter 3 for Target")
+
+
+selection = input()
+
+if selection == 1:
+    WalmartPriceTracker()
+elif selection == 2:
+
+'''
