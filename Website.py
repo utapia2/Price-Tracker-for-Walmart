@@ -42,7 +42,7 @@ def WalmartPriceTracker():
 
         else:
             print('Item is not on sale')
-            freq = input('How often would you like to check for this price? ex: Type 2 for every 2 hours: ')
+            freq = int(input('How often would you like to check for this price? ex: Type 2 for every 2 hours: '))
             print('Okay program will check every ', freq, ' hours') 
             time.sleep(freq*60*60)
             print('Checking again!')
