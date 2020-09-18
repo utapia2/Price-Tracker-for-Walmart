@@ -61,7 +61,9 @@ def main():
     if selection == 1:
         WalmartPriceTracker()
 
-    else:
+    elif selection == 2:
+        BestbuyPriceTracker()
+    else
         exit()
 
 if __name__ == '__main__':
