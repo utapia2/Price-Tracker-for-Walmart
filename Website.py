@@ -3,7 +3,6 @@ import requests
 from bs4 import BeautifulSoup
 import smtplib
 import time
-from email.mime.text import MIMEText
 
 def BestbuyPriceTracker():
     print('caling bestbuy tracker')
