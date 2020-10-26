@@ -4,9 +4,6 @@ from bs4 import BeautifulSoup
 import smtplib
 import time
 
-def BestbuyPriceTracker():
-    print('caling bestbuy tracker')
-    #define the function 
 
 def WalmartPriceTracker():
     print('caling walmart tracker')
@@ -77,15 +74,7 @@ def main():
 
     print("in main function")
 
-    selection = int(input("Enter 1 for Walmart \nEnter 2 for BestBuy \nEnter 3 for Target\n: "))
-
-    if selection == 1:
-        WalmartPriceTracker()
-
-    elif selection == 2:
-        BestbuyPriceTracker()
-    else:
-        exit()
+    WalmartPriceTracker()
 
 if __name__ == '__main__':
     main()
