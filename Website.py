@@ -1,17 +1,14 @@
 
+
 import requests
 from bs4 import BeautifulSoup
 import smtplib
 import time
 
-def BestbuyPriceTracker():
-    print('caling bestbuy tracker')
-    #define the function 
-
 def WalmartPriceTracker():
     print('caling walmart tracker')
 
-    website = input('Enter Walmart item page you want to track: ')
+    website = input('Enter the Walmart item page you want to track: ')
     response = requests.get(website)
 
     if response.status_code == 200:
@@ -20,7 +17,9 @@ def WalmartPriceTracker():
 
     wishprice = float(input('Enter the price you wish to notify you when the item is that price or lower: '))
 
-    
+    findprice = soup.find('span', {'class': "price-characteristic"})
+
+
     to = input('Enter your email address to receive an alert when the price drops: ')
 
 
@@ -42,9 +41,9 @@ def WalmartPriceTracker():
                 break
             else:
                 print('Trying again to capture price!...')
-            
 
-        
+
+
         if price <= wishprice:
 
             print('Your item is on sale!--- trying to send email')
@@ -54,7 +53,7 @@ def WalmartPriceTracker():
             subject='Price Alert!'
             email_body = 'Congratulations! Go to the page:\n' + website + '''\n You're saving $''' + str(price - wishprice) + '!'
             mailtext='Subject:'+subject+'\n\n'+email_body
-            
+
 
             server = smtplib.SMTP('smtp.gmail.com', 587)
             server.ehlo()
@@ -70,22 +69,13 @@ def WalmartPriceTracker():
             #temporary exit(), remove when actually price tracking
             #exit()
             time.sleep(freq)
-            
+
 
 
 def main():
 
     print("in main function")
-
-    selection = int(input("Enter 1 for Walmart \nEnter 2 for BestBuy \nEnter 3 for Target\n: "))
-
-    if selection == 1:
-        WalmartPriceTracker()
-
-    elif selection == 2:
-        BestbuyPriceTracker()
-    else:
-        exit()
+    WalmartPriceTracker()
 
 if __name__ == '__main__':
     main()
