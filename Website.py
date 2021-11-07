@@ -45,8 +45,8 @@ def WalmartPriceTracker():
         if price <= wishprice:
 
             print('Your item is on sale!--- trying to send email')
-            sent_from = 'codemail5678@gmail.com'
-            password = 'qwzx5678'
+            sent_from = ''
+            password = ''
 
             subject='Price Alert!'
             email_body = 'Congratulations! Go to the page:\n' + website + '''\n You're saving $''' + str(price - wishprice) + '!'
